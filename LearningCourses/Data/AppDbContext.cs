@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LearningCourses.Data
 {
-	public class AddDbContext : DbContext
+	public class AppDbContext : DbContext
 	{
-        public AddDbContext(DbContextOptions<AddDbContext> options) 
+        public AppDbContext(DbContextOptions<AppDbContext> options) 
 			: base(options) { }
 
 		DbSet<Course> Courses { get; set; }
