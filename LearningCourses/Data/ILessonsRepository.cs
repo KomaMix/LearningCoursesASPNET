@@ -8,6 +8,7 @@ namespace LearningCourses.Data
 		public Task<List<Lesson>> Get();
 		public Task Add(int courseId, string name, string description);
 		public Task<List<Lesson>> GetByCourseId(int courseId);
-		public Task<Lesson?> GetByLessonId(int lessonId);
+		public Task<Lesson?> GetById(int lessonId);
+		public Task Delete(int lessonId);
 	}
 }

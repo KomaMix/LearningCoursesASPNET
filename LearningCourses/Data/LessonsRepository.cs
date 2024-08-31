@@ -40,11 +40,19 @@ namespace LearningCourses.Data
                 .ToListAsync();
         }
 
-        public Task<Lesson?> GetByLessonId(int lessonId)
+        public Task<Lesson?> GetById(int lessonId)
         {
             return _dbcontext.Lessons
                 .AsNoTracking()
                 .FirstOrDefaultAsync(l => l.Id == lessonId);
+        }
+
+        public Task Delete(int lessonId)
+        {
+            _dbcontext.Lessons
+                .Where(l => l.Id == lessonId)
+                .ExecuteDeleteAsync();
+            return Task.CompletedTask;
         }
     }
 }

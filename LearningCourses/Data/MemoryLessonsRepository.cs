@@ -62,7 +62,7 @@ namespace LearningCourses.Data
 			return Task.FromResult(_lessons.ToList());
 		}
 
-		public Task<Lesson?> GetByLessonId(int lessonId)
+		public Task<Lesson?> GetById(int lessonId)
 		{
 			var lesson = _lessons.FirstOrDefault(l => l.Id == lessonId);
 			return Task.FromResult(lesson);
@@ -73,5 +73,12 @@ namespace LearningCourses.Data
 			var lessons = _lessons.Where(l => l.CourseId == courseId).ToList();
 			return Task.FromResult(lessons);
 		}
-	}
+
+        public Task Delete(int lessonId)
+		{
+			_lessons.RemoveAll(l => l.Id == lessonId);
+
+			return Task.CompletedTask;
+		}
+    }
 }
