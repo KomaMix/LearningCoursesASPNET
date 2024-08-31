@@ -1,0 +1,25 @@
+﻿@model List<Lesson>
+
+<table class="table table-striped table-bordered m-0">
+    <thead class="bg-secondary text-white">
+        <tr>
+            <th>Lesson Id</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var lesson in Model)
+        {
+            <tr>
+                <td>@lesson.Id</td>
+                <td>@lesson.Name</td>
+                <td>@lesson.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
