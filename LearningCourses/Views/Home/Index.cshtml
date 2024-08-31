@@ -17,7 +17,7 @@
                 <td>@course.Name</td>
                 <td>@course.Description</td>
                 <td class="p-0">
-                    @await Component.InvokeAsync("LessonListComponent", new { courseId = course.Id })
+                    @await Component.InvokeAsync("LessonList", new { courseId = course.Id })
                 </td>
             </tr>
         }

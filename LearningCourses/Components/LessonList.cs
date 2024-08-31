@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LearningCourses.Components
 {
-	public class LessonListComponent : ViewComponent
+	public class LessonList : ViewComponent
 	{
 		private readonly ILessonsRepository _lessonsRepository;
 
-		public LessonListComponent(ILessonsRepository lessonsRepository)
+		public LessonList(ILessonsRepository lessonsRepository)
 		{
 			_lessonsRepository = lessonsRepository;
 		}
