@@ -1,0 +1,24 @@
+﻿@model List<Course>
+<table class="table table-sm table-bordered">
+	<thead class="bg-primary text-white">
+		<tr>
+			<th>Course Id</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Courses</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var course in Model)
+		{
+			<tr>
+				<td>@course.Id</td>
+				<td>@course.Name</td>
+				<td>@course.Description</td>
+				<td>Тут будут все курсы</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<a href="/Home/CreateCourse" class="btn btn-primary">Create Course</a>
+<a href="/Home/CreateLesson" class="btn btn-primary">Create Lesson</a>
