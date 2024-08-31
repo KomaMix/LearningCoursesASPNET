@@ -16,5 +16,18 @@ namespace LearningCourses.Controllers
 			var courses = await _coursesRepository.GetWithLessons();
 			return View(courses);
 		}
-	}
+
+		public IActionResult CreateCourse()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public IActionResult CreateCourse(string name, string description)
+		{
+			_coursesRepository.Add(name, description);
+			return RedirectToAction("Index");
+		}
+
+    }
 }
