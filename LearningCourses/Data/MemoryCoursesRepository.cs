@@ -68,7 +68,19 @@ namespace LearningCourses.Data
 			return Task.FromResult(course);
 		}
 
-		public Task<List<Course>> GetWithLessons()
+        public Task<Course?> GetByIdWithLessons(int id)
+		{
+            var course = _courses.FirstOrDefault(c => c.Id == id);
+
+			if (course != null)
+			{
+				course.Lessons = _lessonsRepository.GetByCourseId(id).Result;
+			}
+
+			return Task.FromResult(course);
+        }
+
+        public Task<List<Course>> GetWithLessons()
 		{
 			var coursesWithLessons = _courses.Select(course =>
 			{

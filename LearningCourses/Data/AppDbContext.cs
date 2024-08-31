@@ -8,7 +8,7 @@ namespace LearningCourses.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) 
 			: base(options) { }
 
-		DbSet<Course> Courses { get; set; }
-		DbSet<Lesson> Lessons { get; set; }
+		public DbSet<Course> Courses { get; set; }
+		public DbSet<Lesson> Lessons { get; set; }
     }
 }
