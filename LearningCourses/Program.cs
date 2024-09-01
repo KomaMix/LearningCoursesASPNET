@@ -17,11 +17,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 	options.UseNpgsql(conn));
 
 // Добавление репозиториев
-builder.Services.AddSingleton<MemoryLessonsRepository>(); // Регистрация конкретного класса
-builder.Services.AddSingleton<ILessonsRepository>(sp => sp.GetRequiredService<MemoryLessonsRepository>()); // Регистрация интерфейса
+//builder.Services.AddSingleton<MemoryLessonsRepository>(); // Регистрация конкретного класса
+//builder.Services.AddSingleton<ILessonsRepository>(sp => sp.GetRequiredService<MemoryLessonsRepository>()); // Регистрация интерфейса
 
 // Регистрируем MemoryCoursesRepository, который зависит от MemoryLessonsRepository
-builder.Services.AddSingleton<ICoursesRepository, MemoryCoursesRepository>();
+//builder.Services.AddSingleton<ICoursesRepository, MemoryCoursesRepository>();
+builder.Services.AddTransient<ICoursesRepository, CoursesRepository>();
+builder.Services.AddTransient<ILessonsRepository, LessonsRepository>();
 
 var app = builder.Build();
 

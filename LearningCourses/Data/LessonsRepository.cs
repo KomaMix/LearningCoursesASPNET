@@ -14,14 +14,14 @@ namespace LearningCourses.Data
 
         public async Task Add(int courseId, string name, string description)
         {
-            var Lesson = new Lesson
+            var lesson = new Lesson
             {
-                Id = courseId,
+                CourseId = courseId,
                 Name = name,
                 Description = description
             };
 
-            await _dbcontext.Lessons.AddAsync(Lesson);
+            await _dbcontext.Lessons.AddAsync(lesson);
             await _dbcontext.SaveChangesAsync();
         }
 
@@ -47,12 +47,11 @@ namespace LearningCourses.Data
                 .FirstOrDefaultAsync(l => l.Id == lessonId);
         }
 
-        public Task Delete(int lessonId)
+        public async Task Delete(int lessonId)
         {
-            _dbcontext.Lessons
+            await _dbcontext.Lessons
                 .Where(l => l.Id == lessonId)
                 .ExecuteDeleteAsync();
-            return Task.CompletedTask;
         }
     }
 }

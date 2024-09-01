@@ -5,10 +5,10 @@ namespace LearningCourses.Data
 {
 	public interface ILessonsRepository
 	{
-		public Task<List<Lesson>> Get();
-		public Task Add(int courseId, string name, string description);
-		public Task<List<Lesson>> GetByCourseId(int courseId);
-		public Task<Lesson?> GetById(int lessonId);
-		public Task Delete(int lessonId);
+		Task<List<Lesson>> Get();
+		Task Add(int courseId, string name, string description);
+		Task<List<Lesson>> GetByCourseId(int courseId);
+		Task<Lesson?> GetById(int lessonId);
+		Task Delete(int lessonId);
 	}
 }

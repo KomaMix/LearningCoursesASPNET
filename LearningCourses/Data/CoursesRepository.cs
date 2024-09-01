@@ -1,4 +1,6 @@
-﻿using LearningCourses.Models;
+﻿using LearningCourses.DTOs;
+using LearningCourses.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace LearningCourses.Data
@@ -26,11 +28,22 @@ namespace LearningCourses.Data
 
         public async Task Delete(int id)
         {
-            var course = await _dbContext.Courses
-                .Where(c => c.Id == id)
-                .ExecuteDeleteAsync();
+            try
+            {
+                var deletedRows = await _dbContext.Courses
+                    .Where(c => c.Id == id)
+                    .ExecuteDeleteAsync();
 
-            await _dbContext.SaveChangesAsync();
+                if (deletedRows == 0)
+                {
+                    throw new KeyNotFoundException($"Course with Id {id} not found");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Логирование ошибки
+                throw new InvalidOperationException("Error occurred while deleting the course", ex);
+            }
         }
 
         public Task<List<Course>> Get()
@@ -66,13 +79,16 @@ namespace LearningCourses.Data
 
         public async Task Update(int id, string courseName, string description)
         {
-            await _dbContext.Courses
+            var updatedRows = await _dbContext.Courses
                 .Where(c => c.Id == id)
                 .ExecuteUpdateAsync(s => s
                 .SetProperty(c => c.Name, courseName)
                 .SetProperty(c => c.Description, description));
 
-            await _dbContext.SaveChangesAsync();
+            if (updatedRows == 0)
+            {
+                throw new KeyNotFoundException($"Course with Id {id} not found");
+            }
         }
     }
 }

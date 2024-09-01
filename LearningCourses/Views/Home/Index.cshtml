@@ -19,7 +19,13 @@
                 <td class="p-0">
                     @await Component.InvokeAsync("LessonList", new { courseId = course.Id })
                 </td>
+                <td>
+                    <button class="btn btn-primary">
+                        Create Lesson
+                    </button>
+                </td>
             </tr>
+            
         }
     </tbody>
 </table>
