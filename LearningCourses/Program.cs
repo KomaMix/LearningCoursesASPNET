@@ -27,6 +27,24 @@ builder.Services.AddTransient<ILessonsRepository, LessonsRepository>();
 
 var app = builder.Build();
 
+// Применение миграции при запуске приложения
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    try
+    {
+        var context = services.GetRequiredService<AppDbContext>();
+        context.Database.Migrate(); // Применение миграций
+    }
+    catch (Exception ex)
+    {
+        // Логирование ошибки или обработка исключения
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while migrating the database.");
+    }
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
